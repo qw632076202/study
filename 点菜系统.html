@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>点菜系统</title>
+        <style>    
+            .head{
+                text-align: center;
+                font-size: 40px;
+                background-color: sienna;
+            }
+
+            .dishes{
+                width: 80px;
+                background-color: skyblue;
+                display: inline-block;
+                border: 2px seagreen solid;
+                border-radius: 15px;
+                padding: 51px;
+            }
+
+            .menu{
+                float: left;
+                width: 50%;
+            }
+
+            .info{
+                float: left;
+            }
+
+            .infohead{
+                width: 755px;
+                text-align: center;
+            }
+
+            .orderinfo{
+                border: 2px rebeccapurple solid;
+                border-radius: 10px;
+            }
+
+            .orderop{
+                margin: 10px;
+            }
+
+            button{
+                padding: 8px;
+                background-color:cornflowerblue;    
+                border-radius: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div class="head">点菜系统</div>
+            <div class="menu">
+                <div>
+                    <button v-for='kindofdishitem in kindofdishlist' @click='handler_kindofdish(kindofdishitem)'>{{kindofdishitem}}</button>
+                </div>
+
+                <div class="dishes" v-for='item in kindofdish' @click='handler_order(item)'>
+                    <div>{{item.name}}</div>
+                    <div>{{item.price}} 元</div>
+                </div>
+            </div>
+
+            <div class="info">
+                <div class="infohead">
+                </div>
+                <div class="infofoot">
+                    <div class='orderop'>
+                        <span>桌号：</span>
+                        <input type="text">
+                        <button>开始点菜</button>
+                        <button>结束点菜</button>
+                    </div>
+
+                    <div v-for='item in info' class="orderinfo">
+                        <span>编号:{{item.id}}</span>    
+                        <span>桌号:{{item.tableid}}</span>
+                        <span>总计:{{item.totalprice}} 元</span>
+                        <div>
+                            已点：
+                            <span v-for='orderitem in item.ordered'>{{orderitem}},</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/vue.js"></script>
+        <script type="text/javascript">
+            // 写脚本
+            //vue实例
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    id: 1,
+                    menu: {
+                        meats:[
+                            {name:'青椒肉丝',price:20},
+                            {name:'鱼香烘蛋',price:20},
+                            {name:'蒸羊羔',price:20},
+                            {name:'蒸熊掌',price:20},
+                            {name:'蒸鹿尾',price:20},
+                            {name:'烧花鸭',price:20},
+                            {name:'烧雏鸡',price:20},
+                            {name:'烧子鹅',price:20},
+                            {name:'酱鸡',price:20},
+                        ],
+
+                        vegetables:[
+                            {name:'手撕包菜',price:20},  
+                            {name:'鱼香茄子',price:20},
+                            {name:'香辣土豆丝',price:20},      
+                        ],
+
+                        colddish:[
+                            {name:'凉拌黄瓜',price:20},
+                            {name:'凉拌牛肉',price:20},
+                        ],
+
+                        // 主食
+                        staplefood:[
+                            {name:'米饭',price:10}
+                        ],
+
+                        // 汤
+                        soup:[
+                            {name:'紫菜鸡蛋汤',price:15}
+                        ]
+                    },
+
+                    kindofdishlist:['肉菜','素菜','凉菜','汤类','主食'],
+
+                    kindofdish : null,
+
+                    info: [
+                        {
+                            id:1,
+                            tableid:1,
+                            ordered:['青椒肉丝','手撕包菜'],
+                            totalprice:0,
+                        },
+                        {
+                            id:2,
+                            tableid:2,
+                            ordered:['青椒肉丝','手撕包菜'],
+                            totalprice:0,
+                        }
+                    ],
+                },
+
+                //生命周期函数,mounted
+                mounted() {
+                    this.kindofdish=this.menu.meats
+                },
+
+                computed: {
+
+                },
+
+                watch: {
+
+                },
+
+                methods: {
+                    handler_order(){
+                        console.log('handler_order')
+                    },
+
+                    handler_kindofdish(kindofdishitem){
+                        switch (kindofdishitem) {
+                            case '肉菜':
+                                this.kindofdish=this.menu.meats
+                                break;
+                            case '素菜':
+                                this.kindofdish=this.menu.vegetables
+                                break;
+                            case '凉菜':
+                                this.kindofdish=this.menu.colddish
+                                break;
+                            case '汤类':
+                                this.kindofdish=this.menu.soup
+                                break;
+                            case '主食':
+                                this.kindofdish=this.menu.staplefood
+                                break;                       
+                            default:
+                                break;
+                        }
+                        
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>

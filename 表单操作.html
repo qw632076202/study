@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>表单操作</title>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <form action="">
+                <div>
+                    <span>张艳华：</span>
+                    <span>
+                        <input type="text" v-model='uname'>
+                    </span>
+                </div>
+                <div>
+                    <span>性别：</span>
+                    <span>
+                        <input type="radio" name="sex" value="male" v-model='gender'>男
+                        <input type="radio" name="sex" value="famale" v-model='gender'>女       
+                    </span>        
+                </div>
+                <div>
+                    <span>爱好：</span>
+                    <span>
+                        <input type="checkbox" name="hobby" value="basketball" v-model='hobby'>篮球
+                        <input type="checkbox" name="hobby" value="sing" v-model='hobby'>唱歌
+                        <input type="checkbox" name="hobby" value="code" v-model='hobby'>写代码  
+                    </span>       
+                </div>
+                <div>
+                    <span>职业：</span>
+                    <span>
+                        <select name="job" v-model="job">
+                            <option value='worker' >工人</option>
+                            <option value="coder" >码农</option>
+                        </select>
+                    </span> 
+                </div>
+                <div>
+                    <span>个人简介：</span>
+                    <span>
+                        <textarea v-model='intro'></textarea>
+                    </span>
+                </div>
+                <div>
+                    <button>提交</button>
+                </div>
+                <div>
+                    {{ a1 }}
+                </div>
+            </form>
+        </div>
+
+        <script type="text/javascript" src="js/vue.js"></script>
+        <script type="text/javascript">
+            // 写脚本
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    uname: '',
+                    gender: 'famale',
+                    hobby: ['basketball'],
+                    job: '',
+                    intro: '',
+                    a2: 'hh',
+                    a3: 'aa'
+                },
+
+                computed: {
+                    a1: function(){
+                        return this.a2+this.a3
+                    }
+                },
+
+                methods: {
+
+                },
+            })
+        </script>
+    </body>
+</html>

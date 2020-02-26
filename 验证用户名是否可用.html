@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>表单操作</title>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div>
+                <span>用户名：</span>
+                <span>
+                    <input type="text" v-model.lazy='uname'>
+                </span>
+                <span>{{tips}}</span>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="js/vue.js"></script>
+        <script type="text/javascript">
+            // 写脚本
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    uname: '',
+                    tips: ''
+                },
+
+                computed: {
+
+                },
+
+                watch: {
+                    uname: function(val){
+                        this.tips='验证中...'
+                        this.checkname(val)
+                    }
+                },
+
+                methods: {
+                    checkname: function(val){
+                        setTimeout(function(){
+                            if(val.length<7){
+                                vm.tips='用户名长度不足7个'
+                            }else{
+                                vm.tips='可用用户名'
+                            }
+                        },1000)
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>

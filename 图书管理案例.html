@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>图书管理案例</title>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div>
+                <span>
+                    <input type="text" v-model='fruit'>
+                </span>
+                <button @click='handerlAdd'>添加</button>
+                <button @click='handerlDel'>删除</button>
+            </div>
+            <ul>
+                <li v-for='(item,i) in fruits' :key='i'>{{item}}</li>
+            </ul>
+        </div>
+
+        <script type="text/javascript" src="js/vue.js"></script>
+        <script type="text/javascript">
+            // 写脚本
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    fruits: ['oringe','banana','apple'],
+                    uname: '',
+                    tips: '',
+                    fruit: ''
+                },
+
+                computed: {
+
+                },
+
+                watch: {
+                    uname: function(val){
+                        this.tips='验证中...'
+                        this.checkname(val)
+                    }
+                },
+
+                methods: {
+                    checkname: function(val){
+                        setTimeout(function(){
+                            if(val.length<7){
+                                vm.tips='用户名长度不足7个'
+                            }else{
+                                vm.tips='可用用户名'
+                            }
+                        },1000)
+                    },
+
+                    handerlAdd: function(){
+                        // this.fruits.push(this.fruit)
+                        this.$set(this.fruits,4,'lemon')
+                    },
+
+                    handerlDel: function(){
+                        this.fruits.pop()
+                    }
+
+                },
+            })
+        </script>
+    </body>
+</html>
