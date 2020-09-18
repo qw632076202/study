@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>test_ Object.assign</title>
+    </head>
+    <body>
+        <div id="app">
+
+        </div>
+
+        <script type="text/javascript">
+            const obj = [0, 0, 0, {a: 1, b: 2}, {f: () => {}}, [0,0,0]]
+            // let obj2 = JSON.parse(JSON.stringify(obj))
+            const obj2 = obj.concat();
+            // let obj2 = {};
+            // obj[0] = 4;
+            console.log('obj', obj)
+            // Object.assign(obj2, obj);
+            console.log('obj2', obj2)
+
+            let obj3 = obj
+
+            console.log(Object.is(obj, obj3))
+        </script>
+    </body>
+</html>

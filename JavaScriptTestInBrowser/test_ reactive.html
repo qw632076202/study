@@ -11,26 +11,44 @@
 
         <script type="text/javascript">
             let obj = {
+                a: [],
+                d: '',
+                c: () => {
+                  console.log('c');
+                }
             }
+            console.log('obj', obj)
+            // let obj2 = JSON.parse(JSON.stringify(obj))
+            let obj2 = {};
+            Object.assign(obj2, obj);
+            console.log('obj2', obj2)
 
             // let aValue;
 
-            let b = 0; // b总是要是a的十倍
+            // let b = 0; // b总是要是a的十倍
 
-            Object.defineProperty(obj, 'a', {
-                set(value) {
-                    aValue = value;
-                    b = value * 10;
-                },
+            // Object.defineProperty(obj, 'a', {
+            //     configurable: true,
+            //     enumerable: true,
+            //     set(value) {
+            //         console.log('set a')
+            //         aValue = value;
+            //         b = value * 10;
+            //     },
 
-                get() {
-                    return aValue;
-                }
-            });
+            //     get() {
+            //         console.log('get a')
+            //         return aValue;
+            //     }
+            // });
 
-            obj.a = 20;
-            // console.log(obj.a)
-            console.log(gloab11)
+            // obj.a.push(20);
+
+            
+            for(key in obj) {
+                console.log(key);
+            }
+
 
         </script>
     </body>
