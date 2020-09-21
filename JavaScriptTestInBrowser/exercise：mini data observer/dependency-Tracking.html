@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>template</title>
+    </head>
+    <body>
+        <div id="app">
+
+        </div>
+
+        <script type="text/javascript">
+            window.Dep = class Dep {
+                constructor() {
+                    this.subscribers = new Set()
+                }
+
+                depend() {
+                    if (activeUpdata) {
+                        this.subscribers.add(activeUpdata)
+                    }
+                }
+
+                notify() {
+                    this.activeUpdata.forEach(sub => sub())
+                }
+            }
+
+            let activeUpdata
+
+            function autorun (updata) {
+                function wrappedUpdata() {
+                    activeUpdata = wrappedUpdata
+                    updata()
+                    activeUpdata = null
+                }
+                wrappedUpdata()
+            }
+
+        </script>
+    </body>
+</html>

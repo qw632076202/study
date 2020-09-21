@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>template</title>
+    </head>
+    <body>
+        <div id="app">
+
+        </div>
+
+        <script type="text/javascript">
+            function convert(obj) {
+                Object.keys(obj).forEach(key => {
+                    let internalValue = obj[key]
+                    Object.defineProperty(obj, key, {
+                        get() {
+                            console.log(`getting key "${key}": ${internalValue}`)
+                            return internalValue
+                        },
+
+                        set(newValue) {
+                            console.log(`setting key ${key} to :${newValue}`) 
+                            internalValue = newValue
+                        }
+                    })
+                })
+            }
+
+            obj1 = {
+                a: 1,
+                b: ''
+            }
+
+            convert(obj1)
+
+            // obj1.a
+        </script>
+    </body>
+</html>

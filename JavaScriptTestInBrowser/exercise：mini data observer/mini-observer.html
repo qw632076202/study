@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>template</title>
+    </head>
+    <body>
+        <div id="app">
+
+        </div>
+
+        <script type="text/javascript">
+            window.Dep = class Dep {
+                constructor() {
+                    this.subscribers = new Set()
+                }
+
+                depend() {
+                    if (activeUpdata) {
+                        console.log('add activeUpdata')
+                        this.subscribers.add(activeUpdata)
+                    }
+                }
+
+                notify() {
+                    this.subscribers.forEach(sub => sub())
+                }
+            }
+
+            let activeUpdata
+
+            function autorun (updata) {
+                function wrappedUpdata() {
+                    activeUpdata = wrappedUpdata
+                    updata()
+                    activeUpdata = null
+                }
+                wrappedUpdata()
+            }
+
+            const dep = new window.Dep()
+
+            function observer(obj) {
+                Object.keys(obj).forEach(key => {
+                    let internalValue = obj[key]
+                    Object.defineProperty(obj, key, {
+                        get() {
+                            console.log(`getting key "${key}": ${internalValue}`)
+                            dep.depend()
+                            return internalValue
+                        },
+
+                        set(newValue) {
+                            console.log(`setting key ${key} to :${newValue}`) 
+                            dep.notify()
+                            internalValue = newValue
+                        }
+                    })
+                })
+            }
+
+            /////////////////////
+            let state = {
+                count: 0
+            }
+
+            observer(state)
+
+            autorun(() => { 
+                console.log('autorun==>', state.count)
+            })
+
+            state.count++
+            state.count++
+        </script>
+    </body>
+</html>
