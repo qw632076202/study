@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>表单操作</title>
+        <style>
+            .componentA {
+              background-color: aqua;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+          <component-a class="componentA"></component-a>
+        </div>
+
+        <script type="text/javascript" src="../../js/vue.js"></script>
+        <script type="text/javascript">
+            var componentA = {
+                // template: `<div>componentA</div>`
+                render(h) {
+                  return h('h1', {}, ['先写一些文字', h('div', 'i am div')])
+                }
+            }
+
+            var vm = new Vue({
+                el: '#app',
+
+                data: {
+
+                },
+
+                components: {
+                  'component-a': componentA
+                } 
+            })
+
+        </script>
+    </body>
+</html>
