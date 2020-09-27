@@ -8,29 +8,35 @@
         <div id="app">
 
         </div>
-
-        <script type="text/javascript">
-            function listConn(list1, list2) {
-                list1.push(...list2);
-                return list1
-            }
-            debugger;
-            let list1 = [1,2];
-            let list2 = [3,4];
-
-            let list3 = listConn(list1, list2);
-
-            for (let codePoint of ['a', 'b', 'c', 'd']) {
-              // console.log(codePoint)
-            }
-
-            console.log(String(300));
-
-            let func_a = function({a, b}) {
-                return a + b
-            }
-
-            console.log('func_a', func_a({a: 1, b: 2}))
-        </script>
     </body>
+
+<script type="text/javascript">
+
+function listConn(list1, list2) {
+    list1.push(...list2);
+    return list1
+}
+
+let list1 = [1,2];
+let list2 = [3,4];
+
+let list3 = listConn(list1, list2);
+
+for (let codePoint of ['a', 'b', 'c', 'd']) {
+    // console.log(codePoint)
+}
+
+console.log(String(300));
+
+let func_a = function({a, b}) {
+    return a + b
+}
+
+console.log('func_a', func_a({a: 1, b: 2}))
+
+var obj1 = 3 && 2
+
+console.log(obj1)
+
+</script>
 </html>
