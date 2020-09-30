@@ -1,6 +1,2 @@
 # study
-for study
-
-# mytest
-
-testbranch
+### 用于做些JavaScript相关小练习的仓库
