@@ -1,0 +1,21 @@
+.hello {
+    color: red;
+    text-align:center;
+    background: url(./myImage.jpg);
+    border: 25px solid green;
+    padding: 100px;
+    margin: 25px;
+    position:relative;
+    left:120px;
+    top:120px;
+}
+
+.sonclass {
+    padding: 50px;
+    background-color: aqua;
+    /* display:none; */
+    visibility:hidden;
+    position:absolute;
+    left: 150px;
+    top: 150px;
+}
