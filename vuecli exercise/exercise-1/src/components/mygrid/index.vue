@@ -11,22 +11,20 @@
 </template>
 
 <script>
-export default {
-    props: {
-        matrix: Array
-    },
+import { data } from './data.json'
 
+export default {
     data() {
         return {
+            matrix: data,
             curColIndex: 0,
-            curRowIndex: 0,
+            curRowIndex: 0
         }
     },
 
     mounted() {
         console.log('mounted')
         const domView = this.$el
-        console.log(domView)
         domView.focus()
         domView.onkeydown = (e) => {
             e.preventDefault()
@@ -75,7 +73,6 @@ export default {
 .grid-wrap {
 
 }
-
 .grid-col {
 
 }
