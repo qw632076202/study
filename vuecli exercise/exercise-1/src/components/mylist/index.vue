@@ -22,23 +22,20 @@ export default {
     },
 
     mounted() {
-        const domView = this.$el;
-        console.log(domView)
+        this.func1()
+        const domView = this.$el
         domView.focus()
         domView.onkeydown = (event) => {
             event.preventDefault()
-            const code = event.code
-            console.log(code)
-
-            switch (code) {
-                case 'ArrowUp':
+            switch (event.keyCode) {
+                case 38:
                     if(this.curIndex <= 0) {
                         this.curIndex = this.items.length -1
                     }else {
                         this.curIndex--
                     }
                     break;
-                case 'ArrowDown':
+                case 40:
                     if(this.curIndex >= this.items.length -1) {
                         this.curIndex = 0
                     }else {
@@ -51,6 +48,12 @@ export default {
             }
         }
     },
+
+    methods: {
+       func1() {
+         return 1
+       }
+    }
 }
 </script>
 
