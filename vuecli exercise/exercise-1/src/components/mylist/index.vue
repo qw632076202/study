@@ -7,16 +7,14 @@
       </div>
   </div>
 </template>
-
 <script>
+import { data } from './data.json'
 export default {
     name: 'mylist',
-    props: {
-        items: Array,
-    },
 
     data() {
         return {
+            items: data,
             curIndex: 0
         }
     },
@@ -42,7 +40,6 @@ export default {
                         this.curIndex++
                     }                    
                     break;
-            
                 default:
                     break;
             }
@@ -62,11 +59,9 @@ export default {
     width: 500px;
     background-color:white;
 }
-
 .list-item {
     
 }
-
 .active {
     background-color:blue;
 }
