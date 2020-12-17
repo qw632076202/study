@@ -12,9 +12,28 @@
 
         </div>
 
-        <script type="text/javascript" src="js/vue.js"></script>
+        <script type="text/javascript" src="../js/vue.js"></script>
         <script type="text/javascript">
-            // 写脚本
+            let SkyDialogConstructor = Vue.extend({
+                template:'<div>{{firstName}} {{lastName}} aka {{alias}}</div>',
+                data:function(){    
+                return {    
+                  firstName:'Walter',   
+                  lastName:'White',    
+                  alias:'Heisenberg'
+                }
+              }
+            })
+
+            instance = new SkyDialogConstructor({
+                el: document.createElement('div')
+            })
+            document.body.appendChild(instance.$el)
+
+            myComp1 = {
+              
+            }
+
             var vm = new Vue({
                 el: '#app',
                 data: {

@@ -1,54 +1,65 @@
 <template>
   <div>
-<<<<<<< HEAD
-    <!-- <mygrid :matrix = '[[1,2,3,4], [5,6,7,8],[9,10,11,12],[13,14,15,16]]'></mygrid> -->
-    <mylist :items="[1,2,3]"></mylist>
-=======
     <component
       :is = "currentComponent"
     ></component>
+    <!-- <mylist v-show="isShowMyList"></mylist> -->
     <button @click="changeCompnent">切换组件</button>
->>>>>>> a60f88c9a1a999e7c949430f21edb965d68e3548
+    <button @click="emitMsg1">发送消息1</button>
+    <button @click="emitMsg2">发送消息2</button>
+    <!-- <button @click="changeIsShowMyList">changeIsShowMyList</button> -->
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-// import mygrid from './components/mygrid'
-import mylist from './components/mylist'
-=======
 import mygrid from './components/mygrid'
 import mylist from './components/mylist'
-import alert from './components/alert/src/main'
+// import alert from './components/alert/src/main'
+import testcom1 from './components/testCom1'
+import testcom2 from './components/testCom2'
 
->>>>>>> a60f88c9a1a999e7c949430f21edb965d68e3548
 export default {
   name: 'App',
 
   components: {
-<<<<<<< HEAD
-    mylist
-  }
-=======
     mygrid,
     mylist,
-    alert
+    testcom1,
+    testcom2
   },
 
   data() {
     return {
-      currentComponent: alert,
-      is_mygrid: true
+      currentComponent: '',
+      is_mygrid: true,
+      isShowMyList: true
     }
+  },
+
+  mounted() {
+    console.log('App mounted')
   },
 
   methods: {
     changeCompnent() {
       this.is_mygrid = !this.is_mygrid
-      this.currentComponent = this.is_mygrid ? mygrid : mylist
+      // this.currentComponent = this.is_mygrid ? "mygrid" : "mylist"
+      this.currentComponent = this.is_mygrid ? "testcom1" : "testcom2"
+    },
+
+    emitMsg1() {
+      this.$root.eventBus.$emit('testcomp1')
+    },
+
+    emitMsg2() {
+      this.$root.eventBus.$emit('testcomp2')
+    },
+
+    changeIsShowMyList() {
+      this.isShowMyList = !this.isShowMyList
+      console.log('isShowMyList == ', this.isShowMyList)
     }
   },
->>>>>>> a60f88c9a1a999e7c949430f21edb965d68e3548
 }
 </script>
 

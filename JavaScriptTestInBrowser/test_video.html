@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>播放本地视频</title>
+    <style>
+        html,body,#wrap{
+        width: 100%;
+        height: 100%;
+        background: #ccc;
+		    }
+
+        .hide {
+          display: none;
+        }
+
+        .show {
+          height: 100%;
+          width: 100%;
+          display: block;
+        }
+
+        #tips {
+          font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+  <div id="wrap" tabindex="1">
+    <div
+    id="tips"
+    class="show">
+      click any key to play
+    </div>
+    <video
+    id="myvideo"
+    class="hide"
+    muted
+    controls="controls"
+    autoplay="autoplay"
+    src="https://fd.aigei.com/pvvdo_fast/vdo/mp4/72/72038befa1364207a42704b89fb52053.mp4?e=1607188020&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:vwfAQWM2ZW05WhKZIUeBAUDrP5s="
+    >
+      <div style="color: #fff;font-size: 24px">
+        Your browser does not support the video tag.
+      </div>
+    </video>
+  </div>
+</body>
+
+<script>
+  let wrapDom = document.getElementById('wrap')
+  let myvideoDom = document.getElementById('myvideo')
+  let tipsDom = document.getElementById('tips')
+
+  document.onkeydown = function (e) {
+    const code = e.keyCode
+    console.log('global code == ', code)
+    tipsDom.setAttribute('class', 'hide')
+    myvideoDom.setAttribute('class', 'show')
+  }
+</script>
+</html>
