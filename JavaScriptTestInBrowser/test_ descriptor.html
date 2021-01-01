@@ -3,20 +3,34 @@
 </body>
 
 <script>
+let str1 = "on hashchange location.href:file:///basic/webui/index.html#pageId=nav_vol_ctrl|{%22sac%22:0}|"
+const rxp = /{([^}]+sac[^}]+)}/g;
+const str_in_braces = str1.match(rxp)
+console.log("str_in_Braces == ", str_in_braces)
+// if(str_in_braces) {
+//       const sacFlag = str_in_braces.match(/:./)[0].replace(':', '')
+//       console.log("sacFlag == " + sacFlag)
+// }
+// console.log(rxp.exec(str1))
 
-let obj1 = {
-    a: 1
-}
 
-let obj1_descriptor = Object.getOwnPropertyDescriptor(obj1, 'a');
-// console.log(obj1_descriptor);
-// obj1_descriptor.writable = false;
+// let paramsArr = {sac: 0}
+// // // if(paramsArr[1] && "sac" in paramsArr[1]) {
+// // //     console.log(paramsArr[1])
+// // // }
 
-let ret = Object.defineProperty(obj1, 'a', {
-    writable: false
-})
+// console.log(JSON.stringify(paramsArr))
 
-// obj1.a = 2;
-console.log(ret)
+
+// let str1 = "xxxabxxx"
+
+// console.log(/ab/.test(str1))
+
+const obj1 = {a: 1, b: 2}
+const obj2 = {c: 3}
+const target = {}
+
+Object.assign(target, obj1, obj2)
+console.log(target)
 
 </script>

@@ -1,5 +1,7 @@
 <template>
-  <div class="list-wrap" tabindex="1">
+  <div class="list-wrap" tabindex="1"
+       v-if="isShow"
+  >
       <div class="list-item" v-for="(item, index) in items" :key="index"
         :class="{active: curIndex === index}"
       >
@@ -12,6 +14,19 @@ import { data } from './data.json'
 export default {
     name: 'mylist',
 
+    watch: {
+      isShow(val) {
+        console.log('watch isShow == ', val)
+      }
+    },
+
+    props: {
+      isShow: {
+        type: Boolean,
+        default: true
+      }
+    },
+
     data() {
         return {
             items: data,
@@ -20,9 +35,10 @@ export default {
     },
 
     mounted() {
+        console.log('mylist mounted')
         this.func1()
         const domView = this.$el
-        domView.focus()
+        // domView.focus()
         domView.onkeydown = (event) => {
             event.preventDefault()
             switch (event.keyCode) {
@@ -44,6 +60,10 @@ export default {
                     break;
             }
         }
+    },
+
+    beforeUnmount() {
+        console.log('mylist beforeUnmount')
     },
 
     methods: {
