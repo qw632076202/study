@@ -1,20 +1,28 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>表单操作</title>
-    </head>
-    <body>
-        <div id="app">
-          <!-- <video width="1120" height="540" controls="controls" id="video" preload="auto"
-          autoplay="autoplay">
-            <source src="F:\test\4K 1  3840 2160 29.97 jiuzhaigou 20121102-A.mp4"   type="video/mp4">
-          </video> -->
-        </div>
-        <script type="text/javascript">
-            // var myVideo = document.getElementById("video"); 
-            let arr1 = [1,2,3]
-            console.log(4 in arr1)
-        </script>
-    </body>
-</html>
+<script>
+
+var findMedianSortedArrays = function(nums1, nums2) {
+    const newNums = [...nums1, ...nums2];
+    for(let i = 0; i< newNums.length; i++) {
+        for(let j = i; j< newNums.length; j++) {
+            if(newNums[j] < newNums[i]){
+                const temp = newNums[i];
+                newNums[i] = newNums[j];
+                newNums[j] = temp;
+            }
+        }
+    }
+    let len = newNums.length
+    if(len % 2) {
+        return newNums[parseInt(len/2)]
+    }else {
+        return (newNums[len/2]+newNums[len/2 -1])/2
+    }
+};
+
+let nums1 = [3]
+let nums2 = [-2, -1]
+
+let answer = findMedianSortedArrays(nums1, nums2)
+
+console.log(answer)
+</script>

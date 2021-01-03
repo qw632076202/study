@@ -1,0 +1,65 @@
+<div id="app"></div>
+<style>
+    .red {
+        color: red;
+    }
+</style>
+
+<script>
+function h(tag, props, children) {
+    return {
+        tag,
+        props,
+        children
+    }
+}
+
+function mount(vnode, container) {
+    if(!vnode) {
+        return
+    }
+    if(typeof(vnode) === 'string') {
+        const text = document.createTextNode(vnode)
+        container.appendChild(text)
+        return
+    }
+    var parent = vnode.el = document.createElement(vnode.tag);
+    container.appendChild(parent)
+    if(vnode.props) {
+        Object.keys(vnode.props).forEach(key => {
+            parent.setAttribute(key, vnode.props[key])
+        })
+    }
+    if(vnode.children) {
+        vnode.children.forEach(child => {
+            mount(child, parent)
+        })
+    }
+}
+
+const vdom = h('div', { class: 'red' }, [
+    h('span', null, ['hello']),
+    h('div', null, ['hello'])
+])
+
+mount(vdom, document.getElementById('app'))
+
+
+function patch(n1, n2) {
+    if(n1.tag === n2.tag) {
+        // props
+        
+
+    }else { // replace
+
+    }
+}
+
+const vdom2 = h('div', { class: 'green' }, [
+     h('span', null, ['change!']),
+     h('div', null, ['hello'])
+])
+
+patch(vdom, vdom2)
+
+</script>
