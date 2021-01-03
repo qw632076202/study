@@ -47,8 +47,25 @@ mount(vdom, document.getElementById('app'))
 
 function patch(n1, n2) {
     if(n1.tag === n2.tag) {
+        const el = n2.el = n1.el
         // props
+        const oldProps = n1.props || {}
+        const newPrpos = n2.props || {}
+        for(const key in newPrpos) {
+            const oldValue = oldProps[key]
+            const newValue = newPrpos[key]
+            if(oldProps != newPrpos) {
+                el.setAttribute(key, newPrpos)
+            }
+        }
+        for(const key in oldProps) {
+            if(!(key in newPrpos)) {
+                el.removeAttribute(key)
+            }
+        }
         
+        // children
+
 
     }else { // replace
 
