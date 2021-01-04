@@ -8,6 +8,7 @@
     <button @click="emitMsg1">发送消息1</button>
     <button @click="emitMsg2">发送消息2</button>
     <!-- <button @click="changeIsShowMyList">changeIsShowMyList</button> -->
+    <test-focus></test-focus>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import mylist from './components/mylist'
 // import alert from './components/alert/src/main'
 import testcom1 from './components/testCom1'
 import testcom2 from './components/testCom2'
+import testFocus from './components/testFocus'
 
 export default {
   name: 'App',
@@ -25,7 +27,8 @@ export default {
     mygrid,
     mylist,
     testcom1,
-    testcom2
+    testcom2,
+    testFocus
   },
 
   data() {
