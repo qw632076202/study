@@ -1,9 +1,14 @@
 <script type="text/javascript">
+// 被观察者 subject对象
+// 被观察的数据数据可以在subject对象内，也可以与subject关联起来
+// 添加观察者的时机是比较有考究的
+// 观察者可以直接是函数，这样notify的时候，直接执行这些函数就行
 window.Dep = class Dep {
     constructor() {
         this.subscribers = new Set()
     }
 
+    // 添加观察者
     depend() {
         if (activeUpdata) {
             console.log('add activeUpdata')
@@ -11,6 +16,7 @@ window.Dep = class Dep {
         }
     }
 
+    // notify
     notify() {
         this.subscribers.forEach(sub => sub())
     }
@@ -18,6 +24,7 @@ window.Dep = class Dep {
 
 let activeUpdata
 
+// 准备观察者函数
 function autorun (updata) {
     function wrappedUpdata() {
         activeUpdata = wrappedUpdata
@@ -29,6 +36,10 @@ function autorun (updata) {
 
 const dep = new window.Dep()
 
+// 添加响应式的函数
+// 给数据对象添加响应式的本质就是将对象与subject对象关联起来
+// 核心就是：在get对象属性的时候，调用depend，实际就是添加观察者
+//          在set对象属性的时候，调用notify，实际就是通知观察者更新（调用观察者函数）
 function observer(obj) {
     Object.keys(obj).forEach(key => {
         let internalValue = obj[key]

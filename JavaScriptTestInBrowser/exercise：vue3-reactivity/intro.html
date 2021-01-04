@@ -1,0 +1,37 @@
+<script>
+// 当状体发生改变时，进行渲染
+// onStateChanged(() => {
+//   view = render(state)
+// })
+
+let update, state
+
+// 缓存更新函数，这里只是去准备更新函数
+// 而不是直接执行更新函数，值得考究一下
+const onStateChanged = _update => {
+  update = _update
+}
+
+const setState = newState => {
+  state = newState
+  update()
+}
+
+// 使用形式, 类似react的
+onStateChanged(() => {
+  view = render(state)
+})
+
+setState({a: 5})
+
+// 在vue中，这种形式也会更新
+state.a = 5
+
+// 这里执行这样函数有个副作用，这里调用了一下state.count
+// 如果回调函数直接执行，就会触发count属性的get函数，会执行添加监听
+// 使得这里有个很重要的概念，叫依赖跟踪
+onStateChanged(() => {
+  console.log(state.count)
+})
+
+</script>
