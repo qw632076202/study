@@ -1,0 +1,72 @@
+<script>
+let s = "aaaaaaaaaaaaab"
+let p = "a*a*a*a*a*a*a*a*a*a*c"
+
+// "aaaaaaaaaaaaab"
+// "a*a*a*a*a*a*a*a*a*a*c"
+
+// 没有做出来
+function isMatch(s, p) {
+  let sArr = [...s]
+  let pArr = [...p]
+  console.log('sArr == ', sArr)
+  console.log('pArr == ', pArr)
+
+  if(sArr.length === 0) {
+    if(pArr.length > 0) {
+      if(pArr.length === 1) {
+        return false
+      }else if(pArr.length === 2 && pArr[1] === "*") {
+        return true
+      }else if(pArr.length > 2 && pArr[1] != "*") {
+        return false
+      }
+    }else if(pArr.length === 0){
+      return true
+    }
+  }else{
+    if(pArr.length === 0) {
+      return false
+    }
+  }
+  
+  let sChar, pChar
+  sChar = sArr[0]
+  pChar = pArr[0]
+
+  let hasStar = (pArr[1] && pArr[1] === '*') ? true : false
+
+  if(hasStar) {
+    if(pChar === ".") {
+      let flag = false
+      for(let i = 0; i <= sArr.length; i++) {
+        flag = flag || (isMatch(sArr.slice(i), pArr.slice(2)))
+      }
+      return flag
+    }else{
+      if(pChar === sChar) {
+        let flag = false
+        flag = flag || (isMatch(sArr.slice(), pArr.slice(2)))
+        flag = flag || (isMatch(sArr.slice(1), pArr))
+        flag = flag || (isMatch(sArr.slice(1), pArr.slice(2)))
+        return flag
+      }else {
+        pArr.shift()
+        pArr.shift()
+        return isMatch(sArr, pArr)
+      }
+    }
+  }else{
+    if(pChar === "." || pChar === sChar) {
+      sArr.shift()
+      pArr.shift()
+      return isMatch(sArr, pArr)
+    }else{
+      return false
+    }
+  }
+}
+
+let answer = isMatch(s, p)
+console.log(answer)
+</script>

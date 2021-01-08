@@ -1,0 +1,70 @@
+<script>
+let flowerbed = [1,0,0,0,1] , 
+    n = 2
+
+// 通过了，但是效率很低
+function func(flowerbed, n) {
+    if(n === 0) {
+        return true
+    }
+    if(flowerbed.length === 0) {
+        return false
+    }
+    if(flowerbed.length === 1) {
+        if(flowerbed[0] === 0) {
+            if(n<=1) {
+                return true
+            }else{
+                return false
+            }
+        }else{
+            return false
+        }
+    }
+    let p = 0
+    while(p < flowerbed.length) {
+        if(n === 0) {
+            return true
+        }
+        if(flowerbed[p] === 1){
+            p++
+            continue
+        }else{
+            if(p === 0) {
+                if(flowerbed[p+1] === 0){
+                    flowerbed[p] = 1
+                    n--
+                    p++
+                }else{
+                    p++
+                }
+            }else if(p === flowerbed.length - 1) {
+                if(flowerbed[p-1] === 0) {
+                    flowerbed[p] = 1
+                    n--
+                    p++                
+                }else{
+                    p++
+                }
+            }else {
+                if(flowerbed[p-1] === 0 && flowerbed[p+1] === 0) {
+                    flowerbed[p] = 1
+                    n--
+                    p++
+                }else {
+                    p++
+                }
+            }
+        }
+    }
+    if(n === 0) {
+        return true
+    }else{
+        return false
+    }
+}
+
+let answer = func(flowerbed, n)
+
+console.log('answer == ', answer)
+</script>

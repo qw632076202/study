@@ -1,0 +1,46 @@
+<script>
+// I  1
+// IV 4
+// V  5
+// IX 9
+// X  10
+// XL 40
+// L  50
+// XC 90
+// C  100
+// CD 400
+// D  500
+// CM 900
+// M  1000
+// 1-3999
+
+let num = 3999
+
+var intToRoman = function(num) {
+  let qian = Math.trunc(num/1000) 
+  let bai = Math.trunc(num%1000/100)
+  let shi = Math.trunc(num%100/10)
+  let ge = Math.trunc(num%10)
+  let answer = ''
+  const arr = [[qian,'M','C'], [bai,'']]
+  if(bai) {
+    if(0<bai<4) {
+      answer+='C'.repeat(qian)
+    }else if(bai === 4){
+      answer+='C' + 'D' 
+    }else if(4 < qian < 9){
+      answer+=('D'+'C'.repeat(qian-5))
+    }else{
+      answer+='C'+'M'
+    }
+  }
+  console.log(ge)
+  console.log(shi)
+  console.log(bai)
+  console.log(qian)
+}
+
+let answer = intToRoman(num)
+
+console.log(answer)
+</script>

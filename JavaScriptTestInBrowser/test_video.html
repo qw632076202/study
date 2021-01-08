@@ -1,0 +1,45 @@
+<style>
+  .red {
+    background-color: red;
+    display: none;
+  }
+  .blue {
+    background-color: red;
+    display: block;
+  }
+  .showWord {
+    display: block;
+  }
+</style>
+<div 
+class="red"
+id="videoWrap"
+tabindex="-1"
+>
+  <video
+  width="70%"
+  height="80%"
+  controls="controls"
+  autoplay
+  muted
+  src="http://beta.webapp.skysrt.com/lqq/ad.mp4"
+  >
+    您的浏览器不支持 video 标签。
+  </video>
+</div>
+<div
+id="div1"
+class="red"
+>
+  keydown
+</div>
+<script>
+var dom = document.getElementById("videoWrap")
+var domdiv1 = document.getElementById("div1")
+
+document.onkeydown = function(e) {
+  console.log(e)
+  dom.setAttribute('class', 'blue')
+  domdiv1.setAttribute('class', 'showWord')
+}
+</script>
