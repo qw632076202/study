@@ -1,0 +1,88 @@
+<script>
+/**
+ * // Definition for a Node.
+ * function Node(val, next, random) {
+ *    this.val = val;
+ *    this.next = next;
+ *    this.random = random;
+ * };
+ */
+
+/**
+ * @param {Node} head
+ * @return {Node}
+ */
+// 通过，参考了答案的提示，递归的过程中去记录已经递归过的节点
+let map = new Map()
+
+var copyRandomList = function(head) {
+    if(head) {
+        if(!map.has(head)) {
+            let node = {}
+            node.val = head.val
+            map.set(head, node)
+            node.random = copyRandomList(head.random)
+            node.next = copyRandomList(head.next)
+            return node
+        }else{
+            return map.get(head)
+        }
+    }else{
+        return null
+    }
+};
+
+let nums = [[7,null],[13,0],[11,4],[10,2],[1,0]]
+
+///////
+var array2linkedList = function(arr) {
+    if(arr.length) {
+        let node = {}
+        let nodeObj = arr.shift()
+        node.val = nodeObj[0]
+        node.random = nodeObj[1]
+        node.next = array2linkedList(arr)
+        return node
+    }else{
+        return null
+    }
+}
+
+var linkedList2array = function(node) {
+    if(node) {
+        let arr = linkedList2array(node.next)
+        arr.unshift(node)
+        return arr
+    }else{
+        return []
+    }
+}
+
+let head = array2linkedList(nums)
+
+let arr = linkedList2array(head)
+
+for(let i = 0; i< arr.length; i++) {
+    if(arr[i].random != null) {
+        arr[i].random = arr[arr[i].random]
+    }
+}
+
+for(let i = 0; i< arr.length; i++) {
+    if(i < arr.length -1) {
+        arr[i].next = i + 1
+    }else{
+        arr[i].next = null
+    }
+    
+    if(arr[i].random != null) {
+        for(let j = 0; j<arr.length; j++) {
+            if(arr[i].random === arr[j]) {
+                arr[i].random = j
+            }
+        }
+    }
+}
+
+console.log(arr)
+</script>

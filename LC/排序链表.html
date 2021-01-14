@@ -1,0 +1,86 @@
+<script>
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+
+// 
+
+// 输入：head = [4,2,1,3]
+// 输出：[1,2,3,4]
+   
+
+// 傻办法通过，但是效率极低
+var sortList = function(head) {
+    var array2linkedList = function(nums) {
+        if(nums.length) {
+            let node = {}
+            node.val = nums.shift()
+            node.next = array2linkedList(nums)
+            return node
+        }else{
+            return null
+        }
+    }
+    var linkedList2array = function(node) {
+        if(node) {
+            let arr = linkedList2array(node.next)
+            arr.unshift(node.val)
+            return arr
+        }else{
+            return []
+        }
+    }   
+    let arr = linkedList2array(head)
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++){
+            if(arr[i] > arr[j]) {
+                [arr[i], arr[j]] = [arr[j], arr[i]]
+            }
+        }
+    }
+    return array2linkedList(arr)
+};
+
+
+// 自己写的数组转链表，链表转数组，遍历链表的函数。均使用递归实现
+let nums = [4,2,1,3]
+var array2linkedList = function(nums) {
+    if(nums.length) {
+        let node = {}
+        node.val = nums.shift()
+        node.next = array2linkedList(nums)
+        return node
+    }else{
+        return null
+    }
+}
+
+var linkedList2array = function(node) {
+    if(node) {
+        let arr = linkedList2array(node.next)
+        arr.unshift(node.val)
+        return arr
+    }else{
+        return []
+    }
+}
+
+let node = array2linkedList(nums)
+
+var traverseLinkedList = function(node) {
+    if(node) {
+        console.log(node.val)
+        traverseLinkedList(node.next)
+    }
+}
+
+console.log(linkedList2array(node))
+</script>

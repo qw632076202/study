@@ -1,0 +1,25 @@
+<script>
+let nums = [-1,2,1,-4],
+    target = 1
+
+// 暴力法通过，效率低
+var threeSumClosest = function(nums, target) {
+    let chaju = Number.MAX_SAFE_INTEGER
+    let answer
+    for(let i = 0; i<nums.length; i++) {
+        for (let j = i+1; j < nums.length; j++) {
+            for (let k = j+1; k < nums.length; k++) {
+                if(Math.abs(nums[i]+nums[j]+nums[k] - target) < chaju){
+                    chaju = Math.abs(nums[i]+nums[j]+nums[k] - target)
+                    answer = nums[i]+nums[j]+nums[k]
+                } 
+            }
+        }
+    }
+    return answer
+};
+
+let answer = threeSumClosest(nums, target)
+
+console.log(answer)
+</script>

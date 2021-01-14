@@ -1,0 +1,58 @@
+<script>
+//       1
+//    2     3
+//  4   #  #  # 
+//#   #
+
+let arr = [1,2,4,'#','#','#',3,'#','#']
+
+var array2tree1 = function(arr) {
+    let el = arr.shift()
+    if(el === "#") {
+        return null
+    }else{
+        let node = {}
+        node.val = el
+        node.lChild = array2tree1(arr)
+        node.rChild = array2tree1(arr)
+        return node
+    }
+}
+
+let tree = array2tree1(arr)
+
+var tree2array1 = function(node) {
+    let arr = []
+    var _tree2array1 = function(node) {
+        if(node) {
+            arr.push(node.val)
+            _tree2array1(node.lChild)
+            _tree2array1(node.rChild)
+        }else{
+            arr.push('#')
+        } 
+    }
+    _tree2array1(node)
+    return arr   
+}
+
+var tree2array2 = function(node) {
+    let arr = []
+    var _tree2array2 = function(node) {
+        if(node) {
+            _tree2array2(node.lChild)
+            arr.push(node.val)
+            _tree2array2(node.rChild)
+        }else{
+            arr.push('#')
+        } 
+    }
+    _tree2array2(node)
+    return arr   
+}
+
+
+let arr1 = tree2array2(tree)
+
+console.log(arr1)
+</script>

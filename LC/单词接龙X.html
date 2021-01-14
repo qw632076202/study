@@ -1,0 +1,45 @@
+<script>
+/**
+ * @param {string} beginWord
+ * @param {string} endWord
+ * @param {string[]} wordList
+ * @return {number}
+ */
+// 输入:
+let beginWord = "hit",
+    endWord = "cog",
+    wordList = ["hot","dot","dog","lot","log","cog"]
+
+// 输出: 5
+
+// 解释: 一个最短转换序列是 "hit" -> "hot" -> "dot" -> "dog" -> "cog",
+//      返回它的长度 5。
+
+// 没做出来，看答案也比较困难，先放着
+var ladderLength = function(beginWord, endWord, wordList) {
+    for(let i = 0; i<endWord.length; i++) {
+        
+    }
+};
+
+var func = function(beginWord, endWord, wordList) {
+    for(let i = 0; i<endWord.length; i++) {
+        let set = new Set()
+        let newBeginWord = beginWord.slice(0, i) + endWord[i] + beginWord.slice(i+1)
+        if(wordList.includes(newBeginWord)) {
+            if(newBeginWord === endWord) {
+                return true
+            }else {
+                if(!set.has(newBeginWord)) {
+                    set.add(newBeginWord)
+                    console.log('111',set)
+                    func(newBeginWord, endWord, wordList)
+                }
+            }
+        }
+    }
+};
+
+console.log(func(beginWord, endWord, wordList))
+
+</script>
