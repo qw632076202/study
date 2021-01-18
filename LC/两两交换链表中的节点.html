@@ -1,0 +1,75 @@
+<script>
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+let head = [1,2,3,4]
+
+// 通过,但效率低
+var swapPairs = function(head) {
+  if(!head) return null
+  var linkedList2array = function(node) {
+    if(node) {
+      let arr = linkedList2array(node.next)
+      arr.unshift(node)
+      return arr
+    }else{
+      return []
+    }
+  }
+
+  var array2linkedList2 = function(arr) {
+    for(let i = 0; i< arr.length; i++) {
+      if(i+1 < arr.length) {
+        arr[i].next = arr[i+1]
+      }else{
+        arr[i].next = null
+      }
+    }
+    return arr[0]
+  }
+
+  let arr = linkedList2array(head)
+
+  for(let i = 0; i < arr.length; i+=2) {
+    if(i+1 < arr.length) {
+      [arr[i], arr[i+1]] = [arr[i+1], arr[i]]
+    }
+  }
+
+  return array2linkedList2(arr)
+};
+
+
+///////////////////////
+var array2linkedList = function(arr) {
+  if(arr.length) {
+    let node = {}
+    node.val = arr.shift()
+    node.next = array2linkedList(arr)
+    return node
+  }else {
+    return null
+  }
+}
+
+var array2linkedList2 = function(arr) {
+  for(let i = 0; i< arr.length; i++) {
+    if(i+1 < arr.length) {
+      arr[i].next = arr[i+1]
+    }
+  }
+}
+
+let l1 = array2linkedList(head)
+
+console.log(swapPairs(l1))
+
+</script>

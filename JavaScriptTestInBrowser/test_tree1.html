@@ -21,6 +21,7 @@ var array2tree1 = function(arr) {
 
 let tree = array2tree1(arr)
 
+// 前序遍历
 var tree2array1 = function(node) {
     let arr = []
     var _tree2array1 = function(node) {
@@ -36,6 +37,7 @@ var tree2array1 = function(node) {
     return arr   
 }
 
+// 中序遍历
 var tree2array2 = function(node) {
     let arr = []
     var _tree2array2 = function(node) {
@@ -51,8 +53,6 @@ var tree2array2 = function(node) {
     return arr   
 }
 
-
 let arr1 = tree2array2(tree)
-
 console.log(arr1)
 </script>

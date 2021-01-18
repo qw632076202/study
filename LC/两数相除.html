@@ -1,0 +1,79 @@
+<script>
+/**
+ * @param {number} dividend
+ * @param {number} divisor
+ * @return {number}
+ */
+let dividend = -2147483648;
+    divisor = 2 
+
+// 最好想到的原始做法，超时
+var divide = function(dividend, divisor) {
+  if(dividend === 0) return 0
+
+  if((dividend>0 && divisor>0) || (dividend<0 && divisor<0)){
+    dividend = Math.abs(dividend)
+    divisor = Math.abs(divisor)
+    let ret = 0
+    let orgin_divisor = divisor
+    while(dividend >= orgin_divisor) {
+      let divisor_sum = 1
+      let divisor = orgin_divisor
+      while (dividend> divisor) {
+        dividend = dividend - divisor
+        ret+= divisor_sum
+        divisor = divisor + divisor
+        divisor_sum = divisor_sum + divisor_sum
+      }
+    }
+    if(ret > 2147483647) return 2147483647
+    return ret
+  }else{
+    dividend = Math.abs(dividend)
+    divisor = Math.abs(divisor)
+    let ret = 0
+    while(dividend >= divisor) {
+      dividend = dividend - divisor
+      ret++
+    }
+    if(ret < -2147483648) return 2147483647
+    return -ret    
+  }
+};
+
+// 自己优化后，通过，感觉还可以优化
+var divide1 = function(dividend, divisor) {
+  var fastCal = function(dividend, divisor) {
+    dividend = Math.abs(dividend)
+    divisor = Math.abs(divisor)
+    let ret = 0
+    let orgin_divisor = divisor
+    while(dividend >= divisor) {
+      let divisor_sum = 1
+      while (dividend >= divisor) {
+        dividend = dividend - divisor
+        ret+= divisor_sum
+        divisor = divisor + divisor
+        divisor_sum = divisor_sum + divisor_sum
+      }
+      divisor = orgin_divisor
+    }
+    return ret
+  }
+
+  if(dividend === 0) return 0
+
+  if((dividend>0 && divisor>0) || (dividend<0 && divisor<0)){
+    let ret = fastCal(dividend, divisor)
+    if(ret > 2147483647) return 2147483647
+    return ret
+  }else{
+    let ret = fastCal(dividend, divisor)
+    if(ret < -2147483648) return 2147483647
+    return -ret    
+  }
+};
+
+console.log(divide1(dividend, divisor))
+
+</script>
