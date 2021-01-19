@@ -1,0 +1,59 @@
+<script>
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[][]}
+ */
+let nums = [1, 0, -1, 0, -2, 2], target = 0
+
+// 满足要求的四元组集合为：
+// [
+//   [-1,  0, 0, 1],
+//   [-2, -1, 1, 2],
+//   [-2,  0, 0, 2]
+// ]
+
+// 参考组合总和的回溯，参考四数之和的减枝，才通过，但效率很低。还是这题本身的参考答案中的回溯法效率高
+var fourSum = function(nums, target) {
+  for(let i = 0; i< nums.length; i++) {
+    for(let j = i+1; j <nums.length; j++) {
+      if(nums[i]> nums[j]) {
+        [nums[i], nums[j]] = [nums[j], nums[i]]
+      }
+    }
+  }
+  let ans = []
+  var dfs = function(subans, sum, idx) {
+    if(subans.length === 4) {
+      if(sum === target){
+        let has = false
+        for(let el of ans) {
+          if(el.toString() == subans.toString()) {
+            has = true
+          }
+        }
+        if(!has) {
+          ans.push(subans)
+        }
+      }
+      return
+    }
+    if((nums.length-idx) < (4-subans.length)) {
+      return
+    }
+    if((sum + (4 - subans.length)*nums[idx]) > target) {
+      return
+    }
+    if((sum + (4 - subans.length)*nums[nums.length-1]) < target) {
+      return
+    }
+    dfs(subans, sum, idx+1)
+    dfs([...subans, nums[idx]], sum+nums[idx], idx+1)
+  }
+
+  dfs([], 0, 0)
+  return ans
+};
+
+console.log(fourSum(nums, target))
+</script>
