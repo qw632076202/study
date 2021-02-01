@@ -1,0 +1,42 @@
+<script>
+/**
+ * @param {number} n
+ * @return {string[][]}
+ */
+let n = 4
+
+// 自己想到的dfs，通过
+var solveNQueens = function(n) {
+  let ans = []
+  var dfs = function(i, subans, subans1) {
+    if(subans.length === n) {
+      ans.push(subans1)
+      return
+    }
+    for(let j = 0; j<n; j++) {
+      let isMatch = true
+      for(let el of subans) {
+        // 竖
+        if(j === el[1]){
+          isMatch = false
+          break
+        }
+        // 斜
+        if(Math.abs(el[0]-i) === Math.abs(el[1]-j)) {
+          isMatch = false
+          break                  
+        }
+      }
+      if(isMatch) {
+        dfs(i+1, [...subans, [i,j]], [...subans1, '.'.repeat(j)+'Q'+'.'.repeat(n-j-1)])
+      }
+    }
+  }
+
+  dfs(0, [], [])
+  return ans
+};
+
+console.log(solveNQueens(n))
+
+</script>

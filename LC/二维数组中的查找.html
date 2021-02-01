@@ -1,0 +1,37 @@
+<script>
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+let matrix = [
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
+],
+
+target = 20
+
+// 参考答案通过
+var findNumberIn2DArray = function(matrix, target) {
+  if(matrix.length === 0) {
+    return false
+  }
+  let cur_i = 0,
+      cur_j = matrix[0].length-1
+  while(cur_i>=0 && cur_j>=0 && cur_i<matrix.length && cur_j<matrix[0].length) {
+    if(matrix[cur_i][cur_j]> target) {
+      cur_j--
+    }else if(matrix[cur_i][cur_j]< target){
+      cur_i++
+    }else{
+      return true
+    }
+  }
+  return false
+};
+
+console.log(findNumberIn2DArray(matrix, target))
+</script>
