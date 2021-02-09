@@ -1,0 +1,11 @@
+<script>
+let xhttp = new XMLHttpRequest()
+
+xhttp.onreadystatechange = function() {
+  console.log(this.responseText)
+}
+
+xhttp.open("GET", "http://127.0.0.1:3001/login", true);
+xhttp.send();
+
+</script>

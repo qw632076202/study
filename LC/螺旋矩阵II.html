@@ -1,0 +1,49 @@
+<script>
+/**
+ * @param {number} n
+ * @return {number[][]}
+ */
+let n = 3
+// 通过，效率还行
+// 考点：指针和case分析
+var generateMatrix = function(n) {
+  if(n === 0) return [[]]
+  let ans = []
+  for(let i = 0; i<n; i++) {
+    ans[i] = []
+  }
+  let count = 1
+  ans[0][0] = 1
+  let i = 0,j = 0
+  let sum = n*n-1
+  while(count<=sum) {
+    // 右
+    while(count<=sum && j+1<n && (!ans[i][j+1])) {
+      j++
+      count++
+      ans[i][j] = count
+    }
+    // 下
+    while(count<=sum && i+1<n && (!ans[i+1][j])) {
+      i++
+      count++
+      ans[i][j] = count
+    }
+    // 左
+    while(count<=sum && j-1>=0 && (!ans[i][j-1])) {
+      j--
+      count++
+      ans[i][j] = count      
+    }
+    // 上
+    while(count<=sum && i-1>=0 && (!ans[i-1][j])) {
+      i--
+      count++
+      ans[i][j] = count         
+    }
+  }
+  return ans
+};
+
+console.log(generateMatrix(n))
+</script>

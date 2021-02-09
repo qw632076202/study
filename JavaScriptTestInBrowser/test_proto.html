@@ -1,0 +1,43 @@
+<script>
+// let Func = function() {
+//   this.var1 = 1
+// }
+
+// let obj = new Func()
+
+// console.log(Func.prototype.__proto__ === Object.prototype)
+
+// console.log({}.constructor === Object)
+
+// let obj2 = new function() {}
+
+// console.log(Func.prototype.var1)
+// console.log(obj.var1)
+
+// console.log(obj.constructor === Func)
+
+// console.log(Func.__proto__ === Function.prototype)
+
+// console.log(Function.prototype)
+// console.log(Object.prototype)
+
+function Super() {
+    this.property = true;
+}
+Super.prototype.getSuperValue = function() {
+    return this.property;
+}
+function Sub() {
+    this.subProperty = false;
+}
+//Sub 继承 Super
+Sub.prototype = new Super();
+Sub.prototype.getSubValue = function() {
+    return this.subProperty;
+}
+var instance = new Sub();
+instance.property = false
+console.log(instance)
+
+
+</script>

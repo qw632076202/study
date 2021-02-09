@@ -1,0 +1,38 @@
+<script>
+/**
+ * @param {number} n
+ * @param {number} k
+ * @return {string}
+ */
+let n = 3,
+    k = 6
+// 通过，但是效率较低
+// 考点：dfs
+var getPermutation = function(n, k) {
+  let arr = []
+  for(let i = 1; i<=n; i++) {
+    arr.push(i)
+  }
+  let count = 0
+  let ans
+  let dfs = function(nums, str) {
+    if(str.length === n) {
+      count++
+      if(count === k) {
+        ans = str
+      }
+      return
+    }
+    if(count >= k) {
+      return
+    }
+    for(let i = 0; i< nums.length; i++) {
+      dfs([...nums.slice(0,i),...nums.slice(i+1)], str+nums[i])
+    }
+  }
+  dfs(arr, '')
+  return ans
+};
+
+console.log(getPermutation(n,k))
+</script>

@@ -17,7 +17,7 @@ server.on('request',function(request,response){
         response.write('注册界面')
         response.end()             
     }else if(request.url=='/'){
-        fs.readFile(path.join(__dirname,'./resource/图书管理案例1.html'),function(error,data){
+        fs.readFile(path.join(__dirname,'./resource/test_ajax.html'),function(error,data){
             response.setHeader('Content-type','text/html; charset=utf-8')
             response.end(data.toString())
         });
@@ -30,6 +30,6 @@ server.on('request',function(request,response){
 })
 
 // 绑定端口号,启动服务器
-server.listen(3000,function(){
-    console.log('server is running.....http://127.0.0.1:3000')
+server.listen(3001,function(){
+    console.log('server is running.....http://127.0.0.1:3001')
 })

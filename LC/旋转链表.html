@@ -1,0 +1,55 @@
+<script>
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+var arr2linklist = function(arr) {
+  if(arr.length>0) {
+    let cur = {}
+    cur.val = arr.shift()
+    cur.next = arr2linklist(arr)
+    return cur
+  }else{
+    return null
+  }
+}
+
+let linklist1 = arr2linklist([1,2])
+
+// 通过，效率还行
+// 考点：链表linklist2arr
+var rotateRight = function(head, k) {
+  var linklist2arr = function(node) {
+    if(node) {
+      let arr = linklist2arr(node.next)
+      arr.unshift(node)
+      return arr
+    }else{
+      return []
+    }
+  }
+  let arr = linklist2arr(head)
+  if(arr.length === 0) return null
+  if(arr.length === 1) return head
+  let moveConut = Math.trunc(k%arr.length)
+  if(moveConut === 0) return head
+  let p = arr.length - moveConut
+  if(p === 0) {
+    return arr[p]
+  }else{
+    arr[arr.length-1].next = arr[0]
+    arr[p-1].next = null
+    return arr[p]
+  }
+};
+
+console.log(rotateRight(linklist1, 0))
+</script>
