@@ -1,6 +1,26 @@
 <script>
+let obj = {a:1}
 
-throw new Error('my error','yes')
+let aValue
+Object.defineProperty(obj, 'a', {
+  get() {
+    console.log('getter')
+    return aValue
+  },
+  set(newVal) {
+    console.log('setter')
+    aValue = newVal
+  }
+})
 
-console.log('000')
+// obj.a = 2
+obj.b = function() {
+  console.log('b')
+}
+
+let desc = Object.getOwnPropertyDescriptor(obj, 'b')
+
+console.log(desc)
+
+// console.log(obj.a)
 </script>

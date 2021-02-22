@@ -1,0 +1,28 @@
+<script>
+let Father = function() {
+  this.fatherAttr1 = 1
+}
+
+Father.prototype.fatherAttr2 = 2
+
+let Son = function() {
+  Father.call(this)
+}
+
+Son.prototype = Object.create(Father.prototype)
+
+let sonobj = new Son()
+
+sonobj.fun1 = function() {
+  console.log('fun1')
+}
+
+// for(let key in sonobj) {
+//   console.log(key)
+// }
+
+Object.keys(sonobj).forEach(el => {
+  console.log(sonobj[el])
+})
+
+</script>

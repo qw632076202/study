@@ -1,0 +1,37 @@
+<script>
+const mergeSort = function(arr) {
+  const merge = function(arr1, arr2) {
+    let ret = [],
+        p1 = p2 = 0
+    while(p1<arr1.length && p2<arr2.length) {
+      if(arr1[p1] <= arr2[p2]) {
+        ret.push(arr1[p1])
+        p1++
+      }else{
+        ret.push(arr2[p2])
+        p2++
+      }
+    }
+    ret = [...ret, ...arr1.slice(p1), ...arr2.slice(p2)]
+    console.log("将数组",arr1,'和',arr2,'合并为',ret)
+    return ret
+  }
+
+  const dfs = function(left, right) {
+    if(left === right) return [arr[left]]
+    let mid = left + Math.trunc((right-left)/2)
+    let arr1 = dfs(left, mid)
+    let arr2 = dfs(mid+1,right)
+    return merge(arr1,arr2)
+  }
+
+  return dfs(0, arr.length-1)
+}
+
+let arr = [1,4,2,3,5,6,7,9,0,1,2,3,13,2,2,-1]
+// let arr1 = [1,2,5,5,9]
+
+// let arr2 = [3,4,7]
+console.log(mergeSort(arr))
+console.log(count)
+</script>
